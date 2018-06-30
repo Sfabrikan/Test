@@ -9,6 +9,7 @@ local xml = [[
 local parser = xml2lua.parser(handler)
 parser:parse(xml)
 
+dialog = {}
 --Manually prints the table (since the XML structure for this example is previously known)
 iter = handler._stack.n
 
@@ -17,7 +18,14 @@ for i=1, iter do
     if w.Table then
       for k, t in pairs(w.Table) do
         if k == "Row" then
-          print(k,t)
+          for i = 1, #t do
+            for k, c in pairs(t[i].Cell) do
+              if k == 1 and c.Data then
+                
+              end
+              print(c)
+            end
+          end
         end
       end
     end
